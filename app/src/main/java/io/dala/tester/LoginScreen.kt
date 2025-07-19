@@ -1,7 +1,9 @@
 package io.dala.tester
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -10,6 +12,7 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,11 +28,17 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 
+const val CORRECT_USERNAME: String = "joel"
+const val CORRECT_EMAIL: String = "joelkmugerwa@gmail.com"
+const val CORRECT_PASSWORD: String = "money"
+
+
 @Composable
 fun LoginScreen(onLoginSuccess: () -> Unit, navController: NavController) {
     var usernameoremail by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+    var loginError by remember { mutableStateOf<String?>(null) }
 
     Column {
         OutlinedTextField(
@@ -61,11 +70,23 @@ fun LoginScreen(onLoginSuccess: () -> Unit, navController: NavController) {
                 }
             }
         )
+        if (loginError != null) {
+            Text(loginError!!, color = MaterialTheme.colorScheme.error)
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+
 
         }
         Button(
             onClick = {
-                navController.navigate("home")
+                loginError = null
+               if ((usernameoremail == CORRECT_USERNAME || usernameoremail == CORRECT_EMAIL) && password == CORRECT_PASSWORD) {
+                   onLoginSuccess()
+                   navController.navigate("Home")
+                   return@Button
+               } else {
+                   loginError = "Invalid username/email or password"
+               }
             }
         ) {
             Text(text = "Login")

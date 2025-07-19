@@ -11,6 +11,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -22,7 +24,9 @@ fun  HomeScreen(onLogout: () -> Unit) {
             Column ( modifier = Modifier.padding(it))
             {
                 Text("Welcome to Home")
-                Image(painter = painterResource(id = R.drawable.pussy), contentDescription= "pussy")
+                Image(painter = painterResource(id = R.drawable.pussy), contentDescription= "pussy"
+                , modifier = Modifier.padding(16.dp)
+                )
             }
 
 
