@@ -26,8 +26,8 @@ fun SinsNavHost(navController: Any) {
 
 
     val navController = rememberNavController()
-    val authViewModel: AuthViewmodel = viewModel()
-    val isLoggedIn by authViewModel.isLoggedIn.collectAsState()
+//    val authViewModel: AuthViewmodel = viewModel()
+//    val isLoggedIn by authViewModel.isLoggedIn.collectAsState()
 
     NavHost(
         navController = navController, startDestination = "register"
@@ -54,13 +54,13 @@ fun SinsNavHost(navController: Any) {
                         }
                         launchSingleTop = true
                     }
-                }
+                },
+                navController = navController
             )
         }
         composable("home"){
             HomeScreen(
                 onLogout ={
-                    authViewModel.logout()
                     navController.navigate("login"){
                         popUpTo(navController.graph.startDestinationId){
                             inclusive = true
@@ -72,29 +72,4 @@ fun SinsNavHost(navController: Any) {
         }
     }
 
-}
-
-@Composable
-fun LoginScreen(onLoginSuccess: () -> Unit, onRegisterSuccess: () -> Unit){
-
-}
-
-
-class AuthViewmodel(isLoggedIn: StateFlow<Boolean>) : ViewModel(){
-private val _isLoggedIn = MutableStateFlow(checkInitialLoginState())
-val isLoggedIn: StateFlow<Boolean> = _isLoggedIn
-
-fun loginSuccess(){
-    _isLoggedIn.value = true
-}
-
-    fun logout() {
-        _isLoggedIn.value= false
-    }
-
-private fun checkInitialLoginState(): Boolean{
-
-
-return false
-}
 }

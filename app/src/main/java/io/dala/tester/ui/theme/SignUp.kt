@@ -28,10 +28,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 
 @Composable
-fun SignInScreen() {
+fun SignInScreen(navController: NavController) {
     var Sirname by remember { mutableStateOf("") }
     var Email by remember { mutableStateOf("") }
     var Password by remember { mutableStateOf("") }
@@ -101,7 +102,9 @@ fun SignInScreen() {
                 }
             }
         )
-        Button(onClick = {},enabled = passwordsMatch && Password.isNotEmpty()){
+        Button(onClick = {
+            navController.navigate("home")
+        },enabled = passwordsMatch && Password.isNotEmpty()){
             Text(text = "Sign In")
 
         }
