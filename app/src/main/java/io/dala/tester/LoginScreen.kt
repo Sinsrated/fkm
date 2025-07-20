@@ -28,9 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 
-const val CORRECT_USERNAME: String = "joel"
-const val CORRECT_EMAIL: String = "joelkmugerwa@gmail.com"
-const val CORRECT_PASSWORD: String = "money"
 
 
 @Composable
@@ -80,7 +77,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit, navController: NavController) {
         Button(
             onClick = {
                 loginError = null
-               if ((usernameoremail == CORRECT_USERNAME || usernameoremail == CORRECT_EMAIL) && password == CORRECT_PASSWORD) {
+               if (usernameoremail == "joel" && password == "money") {
                    onLoginSuccess()
                    navController.navigate("Home")
                    return@Button

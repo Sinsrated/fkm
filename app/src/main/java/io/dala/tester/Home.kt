@@ -3,7 +3,9 @@ package io.dala.tester
 import android.R.attr.contentDescription
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -23,7 +25,11 @@ fun  HomeScreen(onLogout: () -> Unit) {
         , content = {
             Column ( modifier = Modifier.padding(it))
             {
-                Text("Welcome to Home")
+                Row (){
+
+                    Button(onClick = AboutUsScreen())
+                 { Text("AboutUs") }
+                }
                 Image(painter = painterResource(id = R.drawable.pussy), contentDescription= "pussy"
                 , modifier = Modifier.padding(16.dp)
                 )

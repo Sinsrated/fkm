@@ -1,5 +1,6 @@
 package io.dala.tester
 
+import SignInScreen
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -38,7 +39,7 @@ fun RegisterScreen(navController: NavHostController) {
                         Text("Don't have an account? Register here")
                     }
                 } else {
-                    SignInScreen(navController)
+                    SignInScreen(navController = navController)
                     Spacer(modifier = Modifier.padding(16.dp))
                     TextButton(onClick = { showLogin = true }) {
                         Text("Already have an account? Login here")
