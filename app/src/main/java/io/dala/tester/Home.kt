@@ -15,10 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun  HomeScreen(onLogout: () -> Unit) {
+fun  HomeScreen(
+    navController: NavHostController,
+    onLogout: () -> Unit) {
     Scaffold (
         topBar = {
             TopAppBar(title = { Text("Home") })}
@@ -27,12 +30,18 @@ fun  HomeScreen(onLogout: () -> Unit) {
             {
                 Row (){
 
-                    Button(onClick = AboutUsScreen())
+                    Button(onClick = {navController.navigate("Aboutus"){
+
+                    }
+                    })
                  { Text("AboutUs") }
                 }
                 Image(painter = painterResource(id = R.drawable.pussy), contentDescription= "pussy"
                 , modifier = Modifier.padding(16.dp)
                 )
+            }
+            Button(onClick = onLogout, modifier = Modifier.padding(top = 8.dp)) {
+                Text("logout")
             }
 
 

@@ -16,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import io.dala.tester.HomeScreen
 import io.dala.tester.LoginScreen
 import io.dala.tester.RegisterScreen
+import io.dala.tester.aboutUsScreen
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -60,14 +61,31 @@ fun SinsNavHost(navController: Any) {
         }
         composable("home"){
             HomeScreen(
-                onLogout ={
-                    navController.navigate("login"){
+                navController= navController,
+                onLogout = {
+                    navController.navigate("login")
+                    {
                         popUpTo(navController.graph.startDestinationId){
                             inclusive = true
                         }
                         launchSingleTop = true
                     }
                 }
+            )
+        }
+        composable("Aboutus") {
+            aboutUsScreen(
+                navController = navController,
+                onHome = {
+                    navController.navigate("home")
+                    {
+                        popUpTo(navController.graph.startDestinationId)
+                        {
+                            inclusive = true
+                        }
+                        launchSingleTop = true
+                    }
+                },
             )
         }
     }
