@@ -1,23 +1,27 @@
 package io.dala.tester.io.dala.tester
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+
 import io.dala.tester.HomeScreen
 import io.dala.tester.LoginScreen
 import io.dala.tester.RegisterScreen
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+=======
+import io.dala.tester.aboutUsScreen
+import io.dala.tester.attendanceScreen
+import io.dala.tester.servicesScreen
+>>>>>>> Stashed changes
+=======
+import io.dala.tester.aboutUsScreen
+import io.dala.tester.attendanceScreen
+import io.dala.tester.servicesScreen
+>>>>>>> Stashed changes
 
 lateinit var onRegisterSuccess: () -> Unit
 
@@ -70,6 +74,58 @@ fun SinsNavHost(navController: Any) {
                 }
             )
         }
+<<<<<<< Updated upstream
+=======
+        composable("Aboutus") {
+            aboutUsScreen(
+                navController = navController,
+                onHome = {
+                    navController.navigate("home")
+                    {
+                        popUpTo(navController.graph.startDestinationId)
+                        {
+                            inclusive = true
+                        }
+                        launchSingleTop = true
+                    }
+                },
+            )
+        }
+        composable("Services") {
+            servicesScreen(
+                navController = navController,
+                onHome = {
+                    navController.navigate("home")
+                    {
+                        popUpTo(navController.graph.startDestinationId)
+                        {
+                            inclusive = true
+                        }
+                        launchSingleTop = true
+                    }
+                }
+            )
+        }
+        composable("Attendance") {
+            attendanceScreen( navController= navController,
+                onHome = {
+                    navController.navigate("home")
+                    {
+                        popUpTo(navController.graph.startDestinationId)
+                        {
+                            inclusive = true
+                        }
+                        launchSingleTop = true
+                    }
+                }
+            )
+
+
+        }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     }
 
 }

@@ -1,21 +1,15 @@
 package io.dala.tester
 
-import android.R.attr.contentDescription
 import androidx.compose.foundation.Image
+
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
->>>>>>> Stashed changes
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,14 +19,19 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun  HomeScreen(onLogout: () -> Unit) {
+fun servicesScreen(navController: NavHostController,
+                   onHome: () -> Unit): () -> Unit
+{
     Scaffold (
         topBar = {
-            TopAppBar(title = { Text("Home") })}
-        ,
+            TopAppBar(title = { Text("Services") })
+        },
         bottomBar = {
             BottomAppBar {
                 Row(modifier = Modifier.padding(16.dp)) {
@@ -65,44 +64,15 @@ fun  HomeScreen(onLogout: () -> Unit) {
             }
         },
         content = {
-            Column ( modifier = Modifier.padding(it))
-            {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                Text("Welcome to Home")
-                Image(painter = painterResource(id = R.drawable.pussy), contentDescription= "pussy")
-=======
-=======
->>>>>>> Stashed changes
-                Button(onClick = { navController.navigate("Attendance") }) {
-                    Text(text = "Attendance")
-                }
-                Button(onClick = { navController.navigate("Homework") }) {
-                    Text(text = "Homework")
-                }
-                Button(onClick = { navController.navigate("Grades") }) {
-                    Text(text = "Grades")
-                }
-                Button(onClick = { navController.navigate("Profile") }) {
-                    Text(text = "Profile")
-                }
+            Column(modifier = Modifier.padding(it)) {
+
+
+                Image(painter = painterResource(id = R.drawable.juice), contentDescription = "test")
 
 
 
-
-
-
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             }
-
-
-
-
-
         }
     )
-
+    return onHome
 }

@@ -1,5 +1,13 @@
 package io.dala.tester
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+
+import SignInScreen
+>>>>>>> Stashed changes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -34,11 +42,26 @@ fun RegisterScreen(navController: NavHostController) {
             Column(
                 modifier = Modifier.padding(it)
             ) {
+<<<<<<< Updated upstream
             if (showLogin){
                 LoginScreen(onLoginSuccess = {}  )
                 Spacer(modifier = Modifier.padding(16.dp))
                 TextButton(onClick = { showLogin = false }) {
                     Text("Don't have an account? Register here")
+=======
+                if (showLogin) {
+                    LoginScreen(onLoginSuccess = {}, navController = navController)
+                    Spacer(modifier = Modifier.padding(16.dp))
+                    TextButton(onClick = { showLogin = false }) {
+                        Text("Don't have an account? Register here")
+                    }
+                } else {
+                    SignInScreen(onRegisterSuccess = {}, navController = navController)
+                    Spacer(modifier = Modifier.padding(16.dp))
+                    TextButton(onClick = { showLogin = true }) {
+                        Text("Already have an account? Login here")
+                    }
+>>>>>>> Stashed changes
                 }
             }else
             {

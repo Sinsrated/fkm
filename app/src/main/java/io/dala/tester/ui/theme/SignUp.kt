@@ -31,8 +31,16 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
+<<<<<<< Updated upstream:app/src/main/java/io/dala/tester/ui/theme/SignUp.kt
+<<<<<<< Updated upstream:app/src/main/java/io/dala/tester/ui/theme/SignUp.kt
 fun SignInScreen() {
     var Sirname by remember { mutableStateOf("") }
+=======
+=======
+>>>>>>> Stashed changes:app/src/main/java/io/dala/tester/SignUp.kt
+fun SignInScreen(navController: NavController, onRegisterSuccess: () -> Unit) {
+    var username by remember { mutableStateOf("") }
+>>>>>>> Stashed changes:app/src/main/java/io/dala/tester/SignUp.kt
     var Email by remember { mutableStateOf("") }
     var Password by remember { mutableStateOf("") }
     var PasswordVisible by remember { mutableStateOf(false) }
