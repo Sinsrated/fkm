@@ -1,13 +1,6 @@
 package io.dala.tester
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
 
-import SignInScreen
->>>>>>> Stashed changes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -23,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import io.dala.tester.ui.theme.SignInScreen
 
@@ -31,7 +25,7 @@ import io.dala.tester.ui.theme.SignInScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreen(navController: NavHostController) {
+fun RegisterScreen(navController: NavController) {
     var showLogin by remember { mutableStateOf(true) }
 
     Scaffold(
@@ -42,13 +36,7 @@ fun RegisterScreen(navController: NavHostController) {
             Column(
                 modifier = Modifier.padding(it)
             ) {
-<<<<<<< Updated upstream
-            if (showLogin){
-                LoginScreen(onLoginSuccess = {}  )
-                Spacer(modifier = Modifier.padding(16.dp))
-                TextButton(onClick = { showLogin = false }) {
-                    Text("Don't have an account? Register here")
-=======
+
                 if (showLogin) {
                     LoginScreen(onLoginSuccess = {}, navController = navController)
                     Spacer(modifier = Modifier.padding(16.dp))
@@ -61,16 +49,7 @@ fun RegisterScreen(navController: NavHostController) {
                     TextButton(onClick = { showLogin = true }) {
                         Text("Already have an account? Login here")
                     }
->>>>>>> Stashed changes
                 }
-            }else
-            {
-                SignInScreen()
-                Spacer(modifier = Modifier.padding(16.dp))
-                TextButton(onClick = { showLogin = true }) {
-                    Text("Already have an account? Login here")
-                }
-            }
             }
         }
     )

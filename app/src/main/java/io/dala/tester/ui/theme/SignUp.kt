@@ -28,19 +28,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 
 @Composable
-<<<<<<< Updated upstream:app/src/main/java/io/dala/tester/ui/theme/SignUp.kt
-<<<<<<< Updated upstream:app/src/main/java/io/dala/tester/ui/theme/SignUp.kt
-fun SignInScreen() {
-    var Sirname by remember { mutableStateOf("") }
-=======
-=======
->>>>>>> Stashed changes:app/src/main/java/io/dala/tester/SignUp.kt
 fun SignInScreen(navController: NavController, onRegisterSuccess: () -> Unit) {
-    var username by remember { mutableStateOf("") }
->>>>>>> Stashed changes:app/src/main/java/io/dala/tester/SignUp.kt
+    var Sirname by remember { mutableStateOf("") }
+    //var username by remember { mutableStateOf("") }
     var Email by remember { mutableStateOf("") }
     var Password by remember { mutableStateOf("") }
     var PasswordVisible by remember { mutableStateOf(false) }
