@@ -48,7 +48,14 @@ fun RegisterScreen(navController: NavController) {
                         Text("Don't have an account? Register here")
                     }
                 } else {
-                    SignInScreen(onRegisterSuccess = {}, navController = navController)
+                    SignInScreen(onRegisterSuccess = {
+                        navController.navigate("home") {
+                            popUpTo(navController.graph.startDestinationId) {
+                                inclusive = true
+                            }
+                            launchSingleTop = true
+                        }
+                    }, navController = navController)
                     Spacer(modifier = Modifier.padding(16.dp))
                     TextButton(onClick = { showLogin = true }) {
                         Text("Already have an account? Login here")

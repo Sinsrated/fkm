@@ -1,6 +1,8 @@
 package io.dala.tester.ui.theme
 
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia.DefaultTab.AlbumsTab.value
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,17 +26,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import io.dala.tester.R
 
 
 @Composable
-fun SignInScreen(navController: NavController, onRegisterSuccess: () -> Unit) {
-    var Sirname by remember { mutableStateOf("") }
-    //var username by remember { mutableStateOf("") }
+fun SignInScreen( onRegisterSuccess: () -> Unit, navController: NavController) {
+    val context = LocalContext.current
+    var username by remember { mutableStateOf("") }
     var Email by remember { mutableStateOf("") }
     var Password by remember { mutableStateOf("") }
     var PasswordVisible by remember { mutableStateOf(false) }
@@ -45,9 +51,9 @@ fun SignInScreen(navController: NavController, onRegisterSuccess: () -> Unit) {
 
     Column() {
         OutlinedTextField(
-            value = Sirname,
-            onValueChange = {Sirname = it},
-            label = { Text("SirName") },
+            value = username,
+            onValueChange = {username = it},
+            label = { Text("username") },
             modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(15.dp)
         )
         OutlinedTextField(
@@ -67,13 +73,14 @@ fun SignInScreen(navController: NavController, onRegisterSuccess: () -> Unit) {
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password),
             trailingIcon = {
-                val image = if (PasswordVisible)
-                    Icons.Filled.Done
+                val imageResId = if (PasswordVisible)
+                    R.drawable.visibilityoff
                 else
-                    Icons.Filled.Lock
+                   R.drawable.visibility
                 val description = if (PasswordVisible) "Hide password" else "Show password"
                 IconButton(onClick = { PasswordVisible = !PasswordVisible }) {
-                    Icon(imageVector = image, description)
+                   Image(painter = painterResource(id = imageResId),
+                       description)
                 }
             }
 
@@ -93,17 +100,29 @@ fun SignInScreen(navController: NavController, onRegisterSuccess: () -> Unit) {
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password),
             trailingIcon = {
-                val image = if (ConfirmPasswordVisible)
-                    Icons.Filled.Done
+                val imageResId = if (ConfirmPasswordVisible)
+                   R.drawable.visibilityoff
                 else
-                    Icons.Filled.Lock
+                   R.drawable.visibility
                 val description = if (ConfirmPasswordVisible) "Hide password" else "Show password"
                 IconButton(onClick = { ConfirmPasswordVisible = !ConfirmPasswordVisible }) {
-                    Icon(imageVector = image, description)
+                    Image(painter = painterResource(id = imageResId),
+                        description)
                 }
             }
         )
-        Button(onClick = {},enabled = passwordsMatch && Password.isNotEmpty()){
+        Button(onClick = {
+            if (username.isNotEmpty() && Email.isNotEmpty() && Password.isNotEmpty()) {
+                if (username == "joel" && Email== "joelkmugerwa@gmail.com" && Password == "money"){
+                onRegisterSuccess()
+            } else {
+                Toast.makeText(context, "Empty username or password", Toast.LENGTH_SHORT).show()
+            }
+        }else{
+            Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
+        }
+
+        },enabled = passwordsMatch && Password.isNotEmpty()){
             Text(text = "Sign In")
 
         }

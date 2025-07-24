@@ -1,6 +1,7 @@
 package io.dala.tester
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -30,15 +32,15 @@ import androidx.navigation.NavController
 @Composable
 fun LoginScreen(onLoginSuccess: () -> Unit, navController: NavController) {
     val context = LocalContext.current
-    var usernameoremail by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
 
     Column {
         OutlinedTextField(
-            value = usernameoremail,
-            onValueChange = {usernameoremail = it},
-            label = { Text("username or email") },
+            value = username,
+            onValueChange = {username = it},
+            label = { Text("username ") },
             modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(15.dp)
         )
         OutlinedTextField(
@@ -53,22 +55,23 @@ fun LoginScreen(onLoginSuccess: () -> Unit, navController: NavController) {
                 keyboardType = KeyboardType.Password
             ),
             trailingIcon = {
-                val image = if (passwordVisible)
-                    Icons.Filled.Done
+                val imageResId = if (passwordVisible)
+                    R.drawable.visibilityoff
                 else
-                    Icons.Filled.Lock
+                   R.drawable.visibility
                 val description = if (passwordVisible) "Hide password" else "Show password"
 
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    Icon(imageVector = image, description)
+                   Image(painter = painterResource(id = imageResId),
+                       contentDescription = description)
                 }
             }
         )
 
         }
         Button(onClick = {
-            if (usernameoremail.isNotEmpty() && password.isNotEmpty()) {
-                if(usernameoremail == "joel" && password == "money") {
+            if (username.isNotEmpty() && password.isNotEmpty()) {
+                if(username == "joel" && password == "money") {
                     onLoginSuccess()
                 }else{
                     Toast.makeText(context, "Invalid username or password", Toast.LENGTH_SHORT).show()
