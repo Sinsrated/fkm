@@ -17,10 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import io.dala.tester.ui.theme.SignInScreen
-
-
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,7 +35,14 @@ fun RegisterScreen(navController: NavController) {
             ) {
 
                 if (showLogin) {
-                    LoginScreen(onLoginSuccess = {}, navController = navController)
+                    LoginScreen(onLoginSuccess = {
+                        navController.navigate("home") {
+                            popUpTo(navController.graph.startDestinationId) {
+                                inclusive = true
+                            }
+                            launchSingleTop = true
+                        }
+                    }, navController = navController)
                     Spacer(modifier = Modifier.padding(16.dp))
                     TextButton(onClick = { showLogin = false }) {
                         Text("Don't have an account? Register here")

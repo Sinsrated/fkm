@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
 
                     Surface(modifier = Modifier.padding(it)) {
 
-                        SinsNavHost(navController = navController)
+                        SinsNavHost()
                     }
                 }
             }

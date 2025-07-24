@@ -1,5 +1,6 @@
 package io.dala.tester
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -27,6 +29,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun LoginScreen(onLoginSuccess: () -> Unit, navController: NavController) {
+    val context = LocalContext.current
     var usernameoremail by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -63,9 +66,17 @@ fun LoginScreen(onLoginSuccess: () -> Unit, navController: NavController) {
         )
 
         }
-        Button(onClick = {}) {
+        Button(onClick = {
+            if (usernameoremail.isNotEmpty() && password.isNotEmpty()) {
+                if(usernameoremail == "joel" && password == "money") {
+                    onLoginSuccess()
+                }else{
+                    Toast.makeText(context, "Invalid username or password", Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                Toast.makeText(context, "Empty username or password", Toast.LENGTH_SHORT).show()
+            }
+        }) {
             Text(text = "Login")
         }
-
-
     }
