@@ -1,5 +1,6 @@
 package io.dala.tester
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,16 +19,27 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.carousel.HorizontalMultiBrowseCarousel
+import androidx.compose.material3.carousel.rememberCarouselState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+
+data class CarouselItem(
+    val id: Int,
+    @DrawableRes val imageResId: Int,
+    val contentDescription: String
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -89,8 +101,35 @@ fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
             }
         },
         content = {
-            Column ( modifier = Modifier.padding(it))
-            {
+            Column ( modifier = Modifier.padding(it)) {
+                Column {
+                    val items = remember {
+                        listOf(
+                            CarouselItem(0, R.drawable.background, "cupcake"),
+                            CarouselItem(1, R.drawable.matia, "donut"),
+                            CarouselItem(2, R.drawable.vigneshwarrajkumar, "eclair"),
+                            CarouselItem(3, R.drawable.oyemike, "froyo"),
+                        )
+                    }
+
+                    HorizontalMultiBrowseCarousel(
+                        //userScrollEnabled = false,
+                        state = rememberCarouselState { items.count() },
+                        preferredItemWidth = 186.dp,
+                        itemSpacing = 8.dp,
+                    ){i ->
+                        val item = items[i]
+                        Image(
+                            modifier = Modifier
+                                .height(205.dp)
+                                .maskClip(MaterialTheme.shapes.extraLarge),
+                            painter = painterResource(id = item.imageResId),
+                            contentDescription = item.contentDescription,
+                            contentScale = ContentScale.Crop
+                        )
+
+                    }
+                }
                 Row(modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth(),
