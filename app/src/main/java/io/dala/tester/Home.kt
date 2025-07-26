@@ -1,10 +1,14 @@
 package io.dala.tester
 
+import android.content.Intent
+import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,8 +18,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -31,7 +38,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
@@ -44,6 +53,7 @@ data class CarouselItem(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
+
     Scaffold (
         topBar = {
             TopAppBar(title = { Text("Home") })}
@@ -105,10 +115,17 @@ fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
                 Column {
                     val items = remember {
                         listOf(
-                            CarouselItem(0, R.drawable.background, "cupcake"),
-                            CarouselItem(1, R.drawable.matia, "donut"),
-                            CarouselItem(2, R.drawable.vigneshwarrajkumar, "eclair"),
-                            CarouselItem(3, R.drawable.oyemike, "froyo"),
+                            CarouselItem(0, R.drawable.photo1, "cupcake"),
+                            CarouselItem(1, R.drawable.photo2, "donut"),
+                            CarouselItem(2, R.drawable.photo3, "eclair"),
+                            CarouselItem(3, R.drawable.photo4, "froyo"),
+                            CarouselItem(0, R.drawable.photo5, "cupcake"),
+                            CarouselItem(1, R.drawable.photo6, "donut"),
+                            CarouselItem(2, R.drawable.photo7, "eclair"),
+                            CarouselItem(3, R.drawable.photo8, "froyo"),
+                            CarouselItem(0, R.drawable.photo9, "cupcake"),
+                            CarouselItem(1, R.drawable.photo10, "donut"),
+
                         )
                     }
 
@@ -162,8 +179,27 @@ fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
                         }
                     )
                 }
+                Column {
+                    Text(
+                        text = "Head Teacher's Message",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                    // You can replace this with a string resource
+                    val headTeacherMessage = "Welcome to our school! We are committed to providing a nurturing and stimulating environment where every student can achieve their full potential. We believe in fostering a love for learning and encouraging our students to become responsible and compassionate global citizens. We look forward to a productive and exciting academic year ahead!"
 
-            }
+                    Card(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            text = headTeacherMessage,
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.padding(16.dp)
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+
+               }
         }
     )
 }
@@ -189,3 +225,4 @@ fun HomeContentIconButton(
         Text(text = text)
     }
 }
+
