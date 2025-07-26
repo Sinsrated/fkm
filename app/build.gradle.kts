@@ -59,7 +59,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-
     // Optional: For advanced permission handling
     implementation (libs.accompanist.permissions)
     // Coroutines
