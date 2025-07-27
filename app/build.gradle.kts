@@ -65,4 +65,5 @@ dependencies {
     implementation (libs.kotlinx.coroutines.android)
     // ViewModel Compose
     implementation (libs.androidx.lifecycle.viewmodel.compose)
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
 }

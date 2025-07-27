@@ -1,11 +1,15 @@
 package io.dala.tester.ui.theme
 
+import android.text.style.BackgroundColorSpan
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia.DefaultTab.AlbumsTab.value
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -26,6 +30,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 
 import androidx.compose.ui.res.painterResource
@@ -48,6 +54,15 @@ fun SignInScreen( onRegisterSuccess: () -> Unit, navController: NavController) {
     var ConfirmPasswordVisible by remember { mutableStateOf(false) }
     val passwordsMatch = Password == ConfirmPassword
     val showError = ConfirmPassword.isNotEmpty() && !passwordsMatch
+
+    Box(modifier = Modifier.padding(5.dp)){
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "Background",
+            modifier = Modifier.padding(5.dp),
+            contentScale = ContentScale.Crop
+        )
+    }
 
     Column() {
         OutlinedTextField(
@@ -123,7 +138,9 @@ fun SignInScreen( onRegisterSuccess: () -> Unit, navController: NavController) {
         }
 
         },enabled = passwordsMatch && Password.isNotEmpty()){
-            Text(text = "Sign In")
+            Text(text = "Sign In",
+                Modifier.background(color = Color(0xFF_E61D26))
+            )
 
         }
 

@@ -6,6 +6,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -53,6 +54,14 @@ data class CarouselItem(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
+    Box(modifier = Modifier.padding(10.dp)){
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "Background Image",
+            modifier = Modifier.padding(10.dp),
+            contentScale = ContentScale.Crop
+        )
+    }
 
     Scaffold (
         topBar = {
