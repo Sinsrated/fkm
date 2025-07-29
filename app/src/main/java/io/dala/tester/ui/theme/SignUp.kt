@@ -1,11 +1,15 @@
 package io.dala.tester.ui.theme
 
+import android.text.style.BackgroundColorSpan
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia.DefaultTab.AlbumsTab.value
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -15,6 +19,9 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.FloatingActionButtonDefaults.containerColor
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -25,7 +32,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.DefaultAlpha
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 
 import androidx.compose.ui.res.painterResource
@@ -48,6 +59,15 @@ fun SignInScreen( onRegisterSuccess: () -> Unit, navController: NavController) {
     var ConfirmPasswordVisible by remember { mutableStateOf(false) }
     val passwordsMatch = Password == ConfirmPassword
     val showError = ConfirmPassword.isNotEmpty() && !passwordsMatch
+
+    Box(modifier = Modifier.padding(5.dp)){
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "Background",
+            modifier = Modifier.padding(5.dp),
+            contentScale = ContentScale.Crop
+        )
+    }
 
     Column() {
         OutlinedTextField(
@@ -111,7 +131,8 @@ fun SignInScreen( onRegisterSuccess: () -> Unit, navController: NavController) {
                 }
             }
         )
-        Button(onClick = {
+        Button(
+            onClick = {
             if (username.isNotEmpty() && Email.isNotEmpty() && Password.isNotEmpty()) {
                 if (username == "joel" && Email== "joelkmugerwa@gmail.com" && Password == "money"){
                 onRegisterSuccess()
@@ -122,8 +143,12 @@ fun SignInScreen( onRegisterSuccess: () -> Unit, navController: NavController) {
             Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
         }
 
-        },enabled = passwordsMatch && Password.isNotEmpty()){
-            Text(text = "Sign In")
+        },enabled = passwordsMatch && Password.isNotEmpty(),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF_E61D26))
+        ){
+            Text(text = "Sign In"
+
+            )
 
         }
 

@@ -3,6 +3,7 @@ package io.dala.tester
 import android.R.attr.icon
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,6 +33,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -48,6 +50,8 @@ import androidx.navigation.NavHostController
 fun servicesScreen(navController: NavHostController,
                    onHome: () -> Unit): () -> Unit
 {
+
+
 
     Scaffold (
         topBar = {
@@ -115,6 +119,7 @@ fun servicesScreen(navController: NavHostController,
                         .verticalScroll(rememberScrollState()) // Make content scrollable
                 ) {
                     ServiceCard(
+
                         iconDrawableResId = R.drawable.school,
                         title = "Comprehensive Education",
                         description = "We offer the Ugandan National Curriculum from Nursery to Primary 7, fostering academic excellence and holistic development. Our programs include a wide range of extracurricular activities to nurture diverse talents."
@@ -188,6 +193,7 @@ fun ServiceCard(
     imageRes: Int? = null
 ) {
     Card(
+        //colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)

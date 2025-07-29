@@ -95,18 +95,18 @@ fun SinsNavHost() {
                 }
             )
         }
-        composable("Attendance") {
-            attendanceScreen( navController= navController,
-//                onHome = {
-//                    navController.navigate("home")
-//                    {
-//                        popUpTo(navController.graph.startDestinationId)
-//                        {
-//                            inclusive = true
-//                        }
-//                        launchSingleTop = true
-//                    }
-//                }
+        composable("News") {
+            NewsScreen( navController= navController,
+               onHome = {
+                    navController.navigate("home")
+                    {
+                        popUpTo(navController.graph.startDestinationId)
+                       {
+                           inclusive = true
+                        }
+                       launchSingleTop = true
+                  }
+               }
             )
         }
     }

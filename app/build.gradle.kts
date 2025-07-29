@@ -59,11 +59,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-
     // Optional: For advanced permission handling
     implementation (libs.accompanist.permissions)
     // Coroutines
     implementation (libs.kotlinx.coroutines.android)
     // ViewModel Compose
     implementation (libs.androidx.lifecycle.viewmodel.compose)
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
 }

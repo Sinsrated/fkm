@@ -1,8 +1,11 @@
 package io.dala.tester
 
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -15,6 +18,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import io.dala.tester.ui.theme.SignInScreen
@@ -24,10 +29,21 @@ import io.dala.tester.ui.theme.SignInScreen
 @Composable
 fun RegisterScreen(navController: NavController) {
     var showLogin by remember { mutableStateOf(true) }
+    Box(modifier = Modifier.padding(5.dp)) {
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "Background Image",
+            modifier = Modifier.padding(10.dp),
+            contentScale = ContentScale.Crop
+        )
+    }
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(if (showLogin) "Login" else "Register Here") })
+            TopAppBar(title = {
+
+                //Text(if (showLogin) "Login" else "Register Here")
+                              })
         },
         content = {
             Column(
