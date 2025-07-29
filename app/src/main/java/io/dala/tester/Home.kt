@@ -1,12 +1,8 @@
 package io.dala.tester
 
-import android.content.Intent
-import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,18 +10,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -37,9 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -54,22 +39,17 @@ data class CarouselItem(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
-    Box(modifier = Modifier.padding(10.dp)){
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Background Image",
-            modifier = Modifier.padding(10.dp),
-            contentScale = ContentScale.Crop
-        )
-    }
 
-    Scaffold (
+
+
+
+    Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Home") })}
-        ,
+            TopAppBar(title = { Text("Home") })
+        },
         bottomBar = {
             BottomAppBar {
-                Row(modifier = Modifier.padding( 10.dp)) {
+                Row(modifier = Modifier.padding(10.dp)) {
                     IconButton(
                         onClick = {
                             if (navController.currentDestination?.route != "Home") {
@@ -120,7 +100,7 @@ fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
             }
         },
         content = {
-            Column ( modifier = Modifier.padding(it)) {
+            Column(modifier = Modifier.padding(it)) {
                 Column {
                     val items = remember {
                         listOf(
@@ -135,7 +115,7 @@ fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
                             CarouselItem(0, R.drawable.photo9, "cupcake"),
                             CarouselItem(1, R.drawable.photo10, "donut"),
 
-                        )
+                            )
                     }
 
                     HorizontalMultiBrowseCarousel(
@@ -143,7 +123,7 @@ fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
                         state = rememberCarouselState { items.count() },
                         preferredItemWidth = 186.dp,
                         itemSpacing = 8.dp,
-                    ){i ->
+                    ) { i ->
                         val item = items[i]
                         Image(
                             modifier = Modifier
@@ -156,21 +136,25 @@ fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
 
                     }
                 }
-                Row(modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween)
+                Row(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                )
                 {
                     HomeContentIconButton(
-                        iconResId=R.drawable.profile,
+                        iconResId = R.drawable.profile,
                         text = "Profile",
-                        onClick = {navController.navigate("Profile")
+                        onClick = {
+                            navController.navigate("Profile")
                         }
                     )
                     HomeContentIconButton(
                         iconResId = R.drawable.homework,
                         text = "Homework",
-                        onClick = {navController.navigate("Homework")
+                        onClick = {
+                            navController.navigate("Homework")
                         }
                     )
                     HomeContentIconButton(
@@ -196,7 +180,8 @@ fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
                     // You can replace this with a string resource
-                    val headTeacherMessage = "Welcome to our school! We are committed to providing a nurturing and stimulating environment where every student can achieve their full potential. We believe in fostering a love for learning and encouraging our students to become responsible and compassionate global citizens. We look forward to a productive and exciting academic year ahead!"
+                    val headTeacherMessage =
+                        "Welcome to our school! We are committed to providing a nurturing and stimulating environment where every student can achieve their full potential. We believe in fostering a love for learning and encouraging our students to become responsible and compassionate global citizens. We look forward to a productive and exciting academic year ahead!"
 
                     Card(modifier = Modifier.fillMaxWidth()) {
                         Text(
@@ -208,10 +193,14 @@ fun  HomeScreen(onLogout: () -> Unit, navController: NavController) {
                 }
                 Spacer(modifier = Modifier.height(16.dp))
 
-               }
+
+            }
         }
     )
 }
+
+
+
 @Composable
 fun HomeContentIconButton(
     iconResId: Int,

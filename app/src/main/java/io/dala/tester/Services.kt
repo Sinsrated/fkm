@@ -50,14 +50,8 @@ import androidx.navigation.NavHostController
 fun servicesScreen(navController: NavHostController,
                    onHome: () -> Unit): () -> Unit
 {
-    //Box(modifier = Modifier.padding(5.dp)){
-        //Image(
-         //   painter = painterResource(id = R.drawable.logo),
-            //contentDescription = "Background Image",
-            //modifier = Modifier.padding(10.dp),
-           // contentScale = ContentScale.Crop
-       // )
-   // }
+
+
 
     Scaffold (
         topBar = {
@@ -199,10 +193,10 @@ fun ServiceCard(
     imageRes: Int? = null
 ) {
     Card(
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF_E61D26)),
+        //colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-       // colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {

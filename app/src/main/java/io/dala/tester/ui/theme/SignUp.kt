@@ -19,6 +19,9 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.FloatingActionButtonDefaults.containerColor
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -29,8 +32,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 
@@ -126,7 +131,8 @@ fun SignInScreen( onRegisterSuccess: () -> Unit, navController: NavController) {
                 }
             }
         )
-        Button(onClick = {
+        Button(
+            onClick = {
             if (username.isNotEmpty() && Email.isNotEmpty() && Password.isNotEmpty()) {
                 if (username == "joel" && Email== "joelkmugerwa@gmail.com" && Password == "money"){
                 onRegisterSuccess()
@@ -137,9 +143,11 @@ fun SignInScreen( onRegisterSuccess: () -> Unit, navController: NavController) {
             Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
         }
 
-        },enabled = passwordsMatch && Password.isNotEmpty()){
-            Text(text = "Sign In",
-                Modifier.background(color = Color(0xFF_E61D26))
+        },enabled = passwordsMatch && Password.isNotEmpty(),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF_E61D26))
+        ){
+            Text(text = "Sign In"
+
             )
 
         }

@@ -49,15 +49,8 @@ import androidx.navigation.NavHostController
 fun aboutUsScreen(navController: NavHostController,
                   onHome: () -> Unit): () -> Unit {
     val context = LocalContext.current
-    Box(modifier = Modifier.padding(10.dp)){
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Background Image",
-            modifier = Modifier.padding(10.dp),
-            contentScale = ContentScale.Crop
-        )
 
-    }
+
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("AboutUs") })
@@ -176,7 +169,6 @@ fun aboutUsScreen(navController: NavHostController,
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
                         Card(
-                            colors = CardDefaults.cardColors(containerColor = Color(0xFF_E61D26)),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
@@ -239,7 +231,6 @@ fun aboutUsScreen(navController: NavHostController,
                 }
                 Spacer(modifier = Modifier.height(10.dp))
                 Card(
-                    colors= CardDefaults.cardColors(containerColor = Color(0xFF_E61D26)),
 
                     modifier = Modifier
                         .fillMaxWidth()
@@ -296,11 +287,10 @@ fun aboutUsScreen(navController: NavHostController,
                         text = "Contact Us",
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(bottom = 8.dp, top = 16.dp), // Added top padding
+                        modifier = Modifier.padding(bottom = 5.dp, top = 10.dp),
                         // color = Color(0xFF_E61D26) // Optional: if you want this title red too
                     )
                     Card(
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFF_E61D26)),
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp)
